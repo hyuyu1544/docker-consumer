@@ -14,13 +14,21 @@ Clone the registry and build the docker image:
 ```
 git clone https://github.com/hyuyu1544/docker-consumer.git
 cd docker-consumer/
-docker build -f Dockerfile -t consumer:latest . --no-cache
-```
-
-You can add your own registry before the image name, then you can `push` to your dockerhub: `docker push <your_registry>/consumer:<version>`
-Then next time, just `docker-compose up -d --build` can pull the image from your dockerhub.
-
-
-```
 docker-compose up -d --build
 ```
+
+Then the consumer begining, you can see log in container like this:
+```
+INFO:[YYYY-mm-dd HH:MM:SS]: start consumer...
+```
+
+### The problem you may facing...
+
+1. rabbitMQ connection fail.
+```
+pika.exceptions.ConnectionClosed: Connection to 127.0.0.1:5672 failed: [Errno 111] Connection refused
+```
+
+solution 1: recheck your rabbitMQ container's port is open
+
+solution 2: use `ifconfig` to get IP and change `RABBITMQ_HOST` which in `docker-compose .yml`

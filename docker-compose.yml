@@ -1,7 +1,7 @@
 version: "3.3"
 services:
   consumer:
-    image: consumer:latest
+    image: hyuyu1544/docker-consumer:latest
     restart: always
     environment:
       - RABBITMQ_HOST=127.0.0.1
